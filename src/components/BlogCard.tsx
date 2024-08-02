@@ -37,10 +37,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
     >
       <div className="flex items-center gap-2 text-sm">
         <div className="w-5">
-          <img src="/src/assets/avatar.png" alt="" className="h-full w-full" />
+          <img
+            src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
+            alt=""
+            className="h-full w-full"
+          />
         </div>
-        <div className="flex text-xs font-semibold text-secondary items-center gap-1">
-          <h1 className=" text-black">{blog.User.username}</h1>
+        <div className="flex items-center gap-1 text-xs font-semibold text-secondary">
+          <h1 className="text-black">{blog.User.username}</h1>
           <span>@</span>
           <time>{formatDate(blog.createdAt)}</time>
         </div>

@@ -28,13 +28,15 @@ const Navbar = () => {
   }
 
   // Function to handle user logout
-  const logout = () => {
-  };
+  const logout = () => {};
 
   return (
-    <div className="flex items-center justify-between border-b border-gray p-2 px-8 sm:px-20 text-base font-semibold xl:px-72">
+    <div className="flex items-center justify-between border-b border-gray p-2 px-8 text-base font-semibold sm:px-20 xl:px-72">
       <div className="w-20">
-        <img src="/src/assets/logo.png" alt="" />
+        <img
+          src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614758/DotBlog_domain_logo_niuc95.png"
+          alt=""
+        />
       </div>
       <div className="flex gap-4 text-xs">
         {user === null ? (
@@ -56,7 +58,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 font-medium">
             <div className="h-6 w-6">
               <img
-                src="/src/assets/avatar.png"
+                src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
                 alt=""
                 className="h-full w-full"
               />

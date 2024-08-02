@@ -99,7 +99,7 @@ const BlogDetails = () => {
             <div className="flex items-center gap-1">
               <div className="h-6 min-h-6 w-6 min-w-6">
                 <img
-                  src="/src/assets/avatar.png"
+                  src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
                   alt=""
                   className="h-full w-full"
                 />
@@ -118,7 +118,7 @@ const BlogDetails = () => {
             <span>{posts.Comments.length}</span>
             <h1>Comments</h1>
           </div>
-            <Comments comments={posts.Comments} />
+          <Comments comments={posts.Comments} />
         </div>
       </div>
     </div>

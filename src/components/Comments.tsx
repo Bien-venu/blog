@@ -22,7 +22,11 @@ const Comments = ({ comments }: any) => {
     <div className="flex w-full flex-col gap-8">
       <div className="flex items-start gap-2">
         <div className="h-8 min-h-8 w-8 min-w-8">
-          <img src="/src/assets/avatar.png" alt="" className="h-full w-full" />
+          <img
+            src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
+            alt=""
+            className="h-full w-full"
+          />
         </div>
         <form className="flex w-full flex-col items-end gap-1 text-sm">
           <input
@@ -30,7 +34,11 @@ const Comments = ({ comments }: any) => {
             placeholder="Add a comment ..."
             className="w-full border-b border-gray py-1 pb-4"
           />
-          <IoIosSend type="submit" size={24} className="cursor-pointer text-more" />
+          <IoIosSend
+            type="submit"
+            size={24}
+            className="cursor-pointer text-more"
+          />
         </form>
       </div>
       <div className="flex w-full flex-col gap-4 text-sm">
@@ -67,7 +75,7 @@ const Comments = ({ comments }: any) => {
             >
               <div className="h-8 min-h-8 w-8 min-w-8">
                 <img
-                  src="/src/assets/avatar.png"
+                  src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
                   alt=""
                   className="h-full w-full"
                 />
@@ -75,7 +83,9 @@ const Comments = ({ comments }: any) => {
               <div className="flex w-full flex-col gap-1 font-medium">
                 <div className="flex items-center gap-2">
                   <h1 className="font-semibold">{comment.User.username}</h1>
-                  <time className=" text-secondary">{formatDate(comment.createdAt)}</time>
+                  <time className="text-secondary">
+                    {formatDate(comment.createdAt)}
+                  </time>
                 </div>
                 <p className="text-secondary">{comment.content}</p>
               </div>
