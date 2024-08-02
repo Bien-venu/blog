@@ -12,9 +12,12 @@ module.exports = {
   theme: {
     colors: {
       primary: "#e2e7ed",
-      btn: "#4932a7",
+      secondary: "#47484c",
+      btn: "#3c483e",
       gray: "#f1f1f1",
       white: "#ffff",
+      black: "#000",
+      more: "#3c907b",
     },
 
     animation: {

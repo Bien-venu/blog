@@ -2,10 +2,15 @@ import { useState } from "react";
 
 interface AuthFormProps {
   mode: "login" | "register";
-  onSubmit: (username: string, password: string, confirmPassword?: string) => void;
+  onSubmit: (
+    username: string,
+    password: string,
+    confirmPassword?: string
+  ) => void;
+  loading: boolean;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ mode, onSubmit }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ mode, onSubmit, loading }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -74,7 +79,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ mode, onSubmit }) => {
         type="submit"
         className="w-full flex justify-center h-12 items-center border rounded-xl text-base font-medium text-white bg-btn "
       >
-        {mode === "login" ? "Login" : "Register"}
+        {loading ? (
+          <div className="item ">
+            <i className="loader --2"></i>
+          </div>
+        ) : mode === "login" ? (
+          "Login"
+        ) : (
+          "Register"
+        )}
       </button>
     </form>
   );
