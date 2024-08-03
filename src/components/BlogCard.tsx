@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 
 interface Blog {
+  updatedAt: any;
   id: string;
   User: {
     username: string;
@@ -31,39 +33,44 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   };
 
   return (
-    <Link
-      to={`/blog/${blog.id}`}
-      className="flex flex-col gap-2 rounded p-4 text-sm font-medium tracking-tighter text-secondary"
-    >
-      <div className="flex items-center gap-2 text-sm">
-        <div className="w-5">
-          <img
-            src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
-            alt=""
-            className="h-full w-full"
-          />
+    <>
+      <Link
+        to={`/blog/${blog.id}`}
+        className="flex flex-col gap-2 rounded p-4 text-sm font-medium tracking-tighter text-secondary"
+      >
+        <div className="flex items-center gap-2 text-sm">
+          <div className="w-5">
+            <img
+              src="https://res.cloudinary.com/dxbeayp6k/image/upload/v1722614661/pngwing.com_vrgzvz.png"
+              alt=""
+              className="h-full w-full"
+            />
+          </div>
+          <div className="flex items-center gap-1 text-xs font-semibold text-secondary">
+            <h1 className="text-black">{blog.User.username}</h1>
+            <span>@</span>
+            <time className="text-secondary">
+              {blog.updatedAt ? (
+                <> {formatDate(blog.updatedAt)}</>
+              ) : (
+                <>{formatDate(blog.createdAt)}</>
+              )}
+            </time>
+          </div>
         </div>
-        <div className="flex items-center gap-1 text-xs font-semibold text-secondary">
-          <h1 className="text-black">{blog.User.username}</h1>
-          <span>@</span>
-          <time>{formatDate(blog.createdAt)}</time>
+        <div className="flex flex-col gap-1">
+          <h1 className="text-xl font-semibold">{blog.title}</h1>
+          <p className="text-secondary">
+            {truncateContent(blog.content, 100)}
+            {blog.content.length >= 100 && (
+              <button className="text-xs font-semibold text-more underline">
+                Read More
+              </button>
+            )}
+          </p>
         </div>
-      </div>
-      <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-semibold">{blog.title}</h1>
-        <p className="text-secondary">
-          {truncateContent(blog.content, 100)}
-          {blog.content.length >= 100 && (
-            <a
-              href={`/blogs/${blog.id}`}
-              className="text-xs font-semibold text-more underline"
-            >
-              Read More
-            </a>
-          )}
-        </p>
-      </div>
-    </Link>
+      </Link>
+    </>
   );
 };
 

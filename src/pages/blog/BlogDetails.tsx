@@ -14,11 +14,18 @@ interface Post {
 }
 
 const BlogDetails = () => {
+  const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const [posts, setPosts] = useState<Post | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const { cardId } = useParams<string>();
+
+  useEffect(() => {
+    // Check if user is authorized on component mount
+    const token = localStorage.getItem("token");
+    setIsAuthorized(!!token);
+  }, []);
 
   const formatDate = (dateString: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -92,7 +99,7 @@ const BlogDetails = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-semibold">{posts.title}</h1>
             <div className="flex items-center gap-2">
-              <Action />
+              {isAuthorized && <Action id={posts.id} />}
             </div>
           </div>
           <div className="flex items-center justify-between gap-2 text-sm font-semibold text-secondary">
@@ -118,7 +125,7 @@ const BlogDetails = () => {
             <span>{posts.Comments.length}</span>
             <h1>Comments</h1>
           </div>
-          <Comments comments={posts.Comments} />
+          <Comments postId={cardId} comments={posts.Comments} />
         </div>
       </div>
     </div>

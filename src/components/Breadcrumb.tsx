@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,12 +13,13 @@ interface HomeProps {
 }
 
 export function Home({ title }: HomeProps) {
+  const navigate = useNavigate();
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink>
-            <Link to="/">Home</Link>
+            <button onClick={() => navigate("/")}>Home</button>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

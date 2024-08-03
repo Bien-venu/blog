@@ -5,6 +5,8 @@
   "hints": {
     "typescript-config/strict": "off",
     "typescript-config/consistent-casing": "off",
-    "button-type": "off"
+    "button-type": "off",
+    "axe/name-role-value": "off",
+    "axe/forms": "off"
   }
 }

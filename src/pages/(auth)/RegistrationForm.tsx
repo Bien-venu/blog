@@ -12,7 +12,7 @@ const RegistrationPage = () => {
   const handleRegister = async (
     username: string,
     password: string,
-    confirmPassword?: string
+    confirmPassword?: string,
   ) => {
     setIsLoading(true);
     if (password !== confirmPassword) {
@@ -21,21 +21,20 @@ const RegistrationPage = () => {
     }
 
     try {
-      const response = await api.post(
+      await api.post(
         `${process.env.REACT_APP_BACKEND_SERVER_URL}/auth/register`,
         {
           username,
           password,
-        }
+        },
       );
-      console.log("Registration successful:", response.data);
       toast("Registration successful!");
       navigate("/login");
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         console.error(
           "Registration failed:",
-          error.response?.data || error.message
+          error.response?.data || error.message,
         );
         toast(error.response?.data.error);
       } else {
@@ -48,13 +47,13 @@ const RegistrationPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md bg-white p-8 rounded shadow">
-        <div className="flex items-center flex-col gap-2 mb-6">
+    <div className="bg-gray-50 flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md rounded bg-white p-8 shadow">
+        <div className="mb-6 flex flex-col items-center gap-2">
           <h1 className="text-2xl font-semibold text-black">Register</h1>
           <Link
             to="/"
-            className="text-sm hover:underline text-more font-medium"
+            className="text-sm font-medium text-more hover:underline"
           >
             Navigate Back to the Blog Main Page
           </Link>
@@ -64,9 +63,9 @@ const RegistrationPage = () => {
           onSubmit={handleRegister}
           loading={isLoading}
         />
-        <p className="flex gap-1 justify-center items-center mt-4">
+        <p className="mt-4 flex items-center justify-center gap-1">
           Already have an account?
-          <Link to="/login" className="text-more font-semibold">
+          <Link to="/login" className="font-semibold text-more">
             Login
           </Link>
         </p>

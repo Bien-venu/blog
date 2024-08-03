@@ -25,11 +25,10 @@ const LoginPage = () => {
       );
       setIsLoading(false);
       toast("Login successful!");
-      console.log(response.data);
-
-      // Store token and login time in cookies
-
+      
       setUser({ token: response.data.token, loginTime: new Date() });
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", username);
       navigate("/");
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
