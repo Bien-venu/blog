@@ -32,6 +32,7 @@ export function Delete({ id, name }: DeleteProps) {
     setIsAuthorized(!!token);
   }, []);
   
+  console.log(error)
     const handleDelete = async () => {
     if (!isAuthorized) {
       setError("Not authorized");
@@ -57,7 +58,6 @@ export function Delete({ id, name }: DeleteProps) {
     } catch (error) {
 
       
-      console.log()
       if (error instanceof Error) {
         if (error.message.includes("403")) {
           toast("You are not allowed to delete or edit this blog.");
