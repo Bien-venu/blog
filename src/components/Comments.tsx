@@ -104,6 +104,9 @@ const Comments = ({
     const token = localStorage.getItem("token");
 
     if (!comment) return;
+    if (username == null) {
+      toast("You don't have an account!");
+    }
 
     try {
       const response = await axios.post(
@@ -141,13 +144,13 @@ const Comments = ({
           "Comment addition failed:",
           error.response?.data || error.message,
         );
-        toast(
+        console.error(
           error.response?.data.error ||
             "Failed to add comment. Please try again.",
         );
       } else {
         console.error("Unexpected error:", error);
-        toast("An unexpected error occurred. Please try again.");
+        console.error("An unexpected error occurred. Please try again.");
       }
     }
   };
@@ -172,6 +175,7 @@ const Comments = ({
             value={comment}
             onChange={handleCommentChange}
             className="w-full border-b border-gray py-1 pb-4"
+            required
           />
           <button type="submit">
             <IoIosSend size={24} className="cursor-pointer text-more" />
@@ -214,6 +218,7 @@ const Comments = ({
                       value={commentContent}
                       onChange={handleChange}
                       className="w-full border-b border-gray py-1 pb-4"
+                      required
                     />
                     <button type="submit">
                       <IoIosSend
