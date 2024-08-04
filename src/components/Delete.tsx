@@ -32,8 +32,7 @@ export function Delete({ id, name }: DeleteProps) {
     setIsAuthorized(!!token);
   }, []);
   
-  console.log(error);
-  const handleDelete = async () => {
+    const handleDelete = async () => {
     if (!isAuthorized) {
       setError("Not authorized");
       return;
@@ -56,11 +55,18 @@ export function Delete({ id, name }: DeleteProps) {
       toast(`${name === "blog" ? "Blog" : "Comments"} deleted successfully!`);
       window.location.reload();
     } catch (error) {
+
+      
+      console.log()
       if (error instanceof Error) {
+        if (error.message.includes("403")) {
+          toast("You are not allowed to delete or edit this blog.");
+        } 
         setError(error.message);
       } else {
         setError("An unknown error occurred");
       }
+
     }
   };
 
