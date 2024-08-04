@@ -7,14 +7,15 @@ import EditorToolbar, { modules, formats } from "./EditorToolbar";
 import axios, { AxiosError } from "axios";
 import { Home } from "./Breadcrumb";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [userInfo, setUserInfo] = useState({
     title: "",
     content: "",
   });
-
-  const [isError, setError] = useState('');
+  const navigate = useNavigate();
+  const [isError, setError] = useState("");
 
   // Reference to the ReactQuill component
   const quillRef = useRef<ReactQuill>(null);
@@ -62,7 +63,9 @@ const Add = () => {
           },
         },
       );
+      navigate("/");
       toast("Success! Your blog post is now live.");
+      window.location.reload();
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 401) {
@@ -108,7 +111,8 @@ const Add = () => {
               </label>
               <EditorToolbar toolbarId={"t1"} />
               <ReactQuill
-                ref={quillRef}                 theme="snow"
+                ref={quillRef}
+                theme="snow"
                 value={userInfo.content}
                 onChange={onContent}
                 placeholder={"Write something awesome..."}
@@ -116,7 +120,6 @@ const Add = () => {
                 formats={formats}
               />
             </div>
-            {isError !== null && <div className="errors"> {isError} </div>}
             <button
               type="submit"
               className="flex h-12 w-fit items-center justify-center rounded-xl border bg-btn px-8 text-end text-base font-medium text-white"
