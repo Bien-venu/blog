@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Simple Blog Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This repository contains the frontend for a simple blog application. The frontend is built using React.js and styling managed through TailwindCSS.
 
-Currently, two official plugins are available:
+## Technologies Used
+- **Frontend Framework:** React.js
+- **Styling:** TailwindCSS
+- **Development Tool:** Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- User Authentication (Login and Registration)
+- Blog Post Management
+  - View a list of all blog posts
+  - View a single post with comments
+  - Create, edit, and delete posts (authenticated users only)
+  - Add comments to posts (authenticated users only)
 
-## Expanding the ESLint configuration
+## API Endpoints
+The frontend interacts with the following backend API endpoints:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Authentication
+| Method | Endpoint        | Description                    |
+|--------|-----------------|--------------------------------|
+| POST   | /auth/register  | Register a new user            |
+| POST   | /auth/login     | Log in with username and password |
 
-- Configure the top-level `parserOptions` property like this:
+### Blog Post
+| Method | Endpoint       | Description                             |
+|--------|----------------|-----------------------------------------|
+| POST   | /posts          | Create a new blog post (Authenticated)  |
+| GET    | /posts          | Get a list of all blog posts            |
+| GET    | /posts/:id      | Get a specific blog post by ID           |
+| PUT    | /posts/:id      | Update a blog post (Authenticated)      |
+| DELETE | /posts/:id      | Delete a blog post (Authenticated)      |
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Comments
+| Method | Endpoint          | Description                                |
+|--------|-------------------|--------------------------------------------|
+| POST   | /comments         | Add a comment to a blog post (Authenticated) |
+| GET    | /comments/:postId  | Get all comments for a specific blog post  |
+| PUT    | /comments/:id      | Update a comment (Authenticated)          |
+| DELETE | /comments/:id      | Delete a comment (Authenticated)          |
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Setup and Installation
+
+## Environment Setup
+1. git clone this repository && cd to the project directory
+2. run `npm install` to install dependencies
+3. create a `.env` file in the root project directory
+4. copy the `.env.example` to the `.env` file and update it accordingly
+5. run `npm run dev` to run project
