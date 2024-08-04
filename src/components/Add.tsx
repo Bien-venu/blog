@@ -19,6 +19,7 @@ const Add = () => {
 
   // Reference to the ReactQuill component
   const quillRef = useRef<ReactQuill>(null);
+  console.log(isError);
 
   const onChangeValue = (e: { target: { name: any; value: any } }) => {
     setUserInfo({
