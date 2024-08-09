@@ -32,37 +32,36 @@ const AppContext = createContext<AppContextType>(defaultContextValue);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<{ token: string; loginTime: Date } | null>(
-    null
+    null,
   );
   const [posts, setPosts] = useState<any[]>([]); // Adjust type according to your posts structure
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_SERVER_URL}/posts`,
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+   const fetchPosts = async () => {
+     try {
+       const response = await fetch(
+         `${process.env.REACT_APP_BACKEND_SERVER_URL}/posts`,
+       );
+       console.log("Response Status:", response.status); // Log status code
+       if (!response.ok) {
+         throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log("Fetched Data:", data); // Log fetched data
         setPosts(data);
-      } catch (error) {
-        // Assert that error is of type Error
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError("An unknown error occurred");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
+     } catch (error) {
+       setError(
+         error instanceof Error ? error.message : "An unknown error occurred",
+       );
+     } finally {
+       setLoading(false);
+     }
+   };
+    
     fetchPosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

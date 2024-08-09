@@ -63,7 +63,7 @@ const BlogDetails = () => {
 
   if (loading) {
     return (
-      <div className="flex w-full flex-col gap-4 p-2 px-8 sm:px-20 xl:px-72">
+      <div className="flex w-full h-full flex-col gap-4 p-2 px-8 sm:px-20 xl:px-72">
         <div className="flex flex-col space-y-3 p-4 shadow">
           <Skeleton className="h-7" />
           <div className="space-y-2">
