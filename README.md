@@ -15,6 +15,7 @@ This repository contains the frontend for a simple blog application. The fronten
   - View a single post with comments
   - Create, edit, and delete posts (authenticated users only)
   - Add comments to posts (authenticated users only)
+  
 
 ## API Endpoints
 The frontend interacts with the following backend API endpoints:
@@ -50,3 +51,4 @@ The frontend interacts with the following backend API endpoints:
 3. create a `.env` file in the root project directory
 4. copy the `.env.example` to the `.env` file and update it accordingly
 5. run `npm run dev` to run project
+6. the REACT_APP_BACKEND_SERVER_URL is https://blog-backend-7xb4.onrender.com/api
