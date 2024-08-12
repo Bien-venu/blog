@@ -52,3 +52,4 @@ The frontend interacts with the following backend API endpoints:
 4. copy the `.env.example` to the `.env` file and update it accordingly
 5. run `npm run dev` to run project
 6. the REACT_APP_BACKEND_SERVER_URL is https://blog-backend-7xb4.onrender.com/api
+6. And the local repository run on http://localhost:5173

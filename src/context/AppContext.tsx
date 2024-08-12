@@ -7,6 +7,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import axios from "axios"; // Import axios
 
 interface AppContextType {
   user: { token: string; loginTime: Date } | null;
@@ -39,29 +40,29 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-   const fetchPosts = async () => {
-     try {
-       const response = await fetch(
-         `${process.env.REACT_APP_BACKEND_SERVER_URL}/posts`,
-       );
-       console.log("Response Status:", response.status); // Log status code
-       if (!response.ok) {
-         throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        console.log("Fetched Data:", data); // Log fetched data
-        setPosts(data);
-     } catch (error) {
-       setError(
-         error instanceof Error ? error.message : "An unknown error occurred",
-       );
-     } finally {
-       setLoading(false);
-     }
-   };
-    
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_SERVER_URL}/posts`,
+        );
+        console.log("Response Status:", response.status); // Log status code
+        console.log("Fetched Data:", response.data); // Log fetched data
+        setPosts(response.data);
+      } catch (error) {
+        setError(
+          axios.isAxiosError(error) && error.response
+            ? `Error: ${error.response.status} - ${error.response.statusText}`
+            : error instanceof Error
+              ? error.message
+              : "An unknown error occurred",
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPosts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
